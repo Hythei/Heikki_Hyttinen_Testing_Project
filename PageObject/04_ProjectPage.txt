@@ -1,0 +1,132 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition		Browser open, User is logged onto the GitLab service, User has navigated onto Gitlab's front page (gitlab.com).
+
+Post Condition	User has Created a working project, Browser has been closed
+
+Tags Project creation, TS-1 Project Creation, project management, validation
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+MainPage = gitlab.com
+ProjectCreationURL = gitlab.com/projects/new
+ProjectName = First Project
+TemplateName = Temp Project
+UpdatedTempName = UpTemp Project
+InvalidProjectName = Inv4alid@Pr0ject!!!Name
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Project creation field variables
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create blank project
+	Create template project 
+	Update name of template project
+	Delete template project
+	Valide that message is showing Project 'First project ' was successfully created.
+
+Create Blank Project
+	Navigate to the main page MainPage
+	Click on "New Project"
+	Ensure URL has changed to ProjectCreationURL
+	Click on "Create Blank Project"
+	Input ProjectName to "Project Name" -field
+	Leave the settings as they are
+	Click on "Create Project"
+	You should be directed to the newly created project page
+
+
+Create Template Project
+	Navigate to the main page MainPage
+	Click on "New Project"
+	Ensure URL has changed to ProjectCreationURL
+	Click on "Create from Template"
+	Use "Sample GitLab Project" as your template
+	Name the project TemplateName
+	Click on "Create Project"
+	Verify that the site is importing the repository for you
+	Once ready the project will be loaded for you
+
+Update name of template project
+	Navigate to the main page MainPage
+	Click on project with the name TemplateName
+	Click on the Settings from the menu on the left
+	Choose General from the menu
+	In the following page, edit the Project Name to UpdatedTempName
+	Click on "Save Changes"
+	Verify that you receive a notification about a successful update.
+	Navigate to MainPage
+	Verify that the desired project's name has changed
+
+Deletion of Template Project
+	Navigate to the main page MainPage
+	Click on the project with the name UpdatedTempName
+	Click on Settings
+	Click on General
+	Click on Advanced
+	Scroll down until you see "Delete Project"
+	Click on Delete Project
+	Follow the instructions of the verification screen.
+	Click on "Yes, delelete project"
+	Verify that you have been transferred to the MainPage
+	Verify that the deleted project cannot be found in the projects list.
+
+
+
+
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+
+Creating a blank project with the previous same name
+	Navigate to the main page MainPage
+	Click on New Project
+	Ensure the URL changes to ProjectCreationURL
+	Click on Create Blank project
+	Input ProjectName to the "Project Name" field
+	Leave the settings as they are
+	Click on Create Project
+	Verify that you've received an error notification indicating the name is already in use
+	Verify that that the project is not created
+
+Creating a prject when the User is not logged in
+	Log out of GitLab's services
+	Navigate to the New Project Page: ProjectCreationURL
+	You should be redirected to the login page
+	Verify that you receive a message about needing to be logged in to proceed
+
+Creating a project with an invalid name
+	Navigate to main page MainPage
+	Click on New Project
+	Ensure the URL changes to ProjectCreationURL
+	Click on Create Blank project
+	Input InvalidProjectName to the "Project Name" field
+	Verify that you receive a notification about name restrictions
+	Click on "Create Project"
+	Verify that you receive a message about the form containing an error
+	Verify that the message specifies the type of error
+	
+
+

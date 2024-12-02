@@ -1,0 +1,83 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+# TODO: Write Precondition and Postcondition, Tags 
+
+Pre Condition	User has logon onto GitLab Services, User has a ready-made project 
+Post Condition	Issue has been created/changed/deleted successfully
+Tags Issue, Issue Creation, Issue Update, Issue Deletion, Issue Management, Version control
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+
+MainPage = https://gitlab.com/
+IssueName = An Issue
+UpdatedIssueName = Up Issue
+TestProject = First Project
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create issue,
+ 	Update name of issue, 
+	Create second issue with privious updated name
+    Delete first issue
+
+Creating a New Issue
+	Navigate to the MainPage
+	Click on the relevant project, TestProject
+	On the left side of the screen, click on "Issues"
+	Click on "New Issue"
+	Input IssueName to the Title -field
+	Leave other settings as they are
+	Click on "Create Issue"
+	Verify that the issue has been created by the page refreshing to its information page
+
+Updating the Name of the Issue
+	Navigate to the MainPage
+	Click on the relevant project, TestProject
+	On the left side of the screen, click on Issues
+	Click on the aforementioned issues, IssueName
+	Click on "Edit"
+	Replace "An Issue" with "Up Issue"
+	Click on "Save Changes"
+	Verify that the name has changed
+
+Creating a second Issue with a name identical to that of the previous One
+	Navigate to the MainPage
+	Click on the relevant project, TestProject
+	On the left side of the screen, click on Issues
+	Click on "New Issue"
+	Assign it the title "UpdatedIssueName"
+	Ensure the application informs you of similarly named issues
+	Leave settings as they are
+	Click on "Create Issue"
+	Ensure the issue has been created successfully
+	Return to the Issues -screen
+	Ensure that there are two issues with identical names differentiated by their numbers (#1 & #2)
+
+Deleting the First Issue
+	Navigate to the MainPage
+	Click on the relevant project, TestProject
+	On the left side of the screen, click on Issues
+	Click on the issue with "#1" under its name
+	Click on the three dots beside the "Edit" button
+	From the dropdown menu choose "Delete Issue"
+	Upon being prompted, click on "Delete Issue" again
+	Upon successful deletion you will return to the prior screen
+	Verify that the remaining issue is the newer one by the "#2" under its name.
+
+
+
